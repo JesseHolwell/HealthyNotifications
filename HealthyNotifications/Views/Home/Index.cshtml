@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Healthy reminders</h1>
+    <p id="quote" class="lead"></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel notification-tile">
+            <div class="panel-heading">
+                Notification name
+            </div>
+            <div class="panel-body">
+                <p>
+                    text
+                </p>
+                <p>
+                    icon?
+                </p>
+                <p>
+                    time
+                </p>
+                <p><a class="btn btn-default">Things</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel notification-tile">
+            <div class="panel-heading">
+                Notification name
+            </div>
+            <div class="panel-body">
+                <p>
+                    text
+                </p>
+                <p>
+                    icon?
+                </p>
+                <p>
+                    time
+                </p>
+                <p><a class="btn btn-default">Things</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel notification-tile">
+            <div class="panel-heading">
+                Notification name
+            </div>
+            <div class="panel-body">
+                <p>
+                    text
+                </p>
+                <p>
+                    icon?
+                </p>
+                <p>
+                    time
+                </p>
+                <p><a class="btn btn-default">Things</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var quotes = [
+        "Health is not valued till sickness comes."
+    ];
+
+    //var userSettings = new {
+    //    notifications: [
+    //        {
+    //            text: "test",
+    //            icon: "",
+    //            time: 15000
+    //        },
+    //        {
+    //            text: "test2",
+    //            icon: "",
+    //            time: 10000
+    //        }
+    //    ]
+    //};
+
+    $(function () {
+        $("#quote").val(quotes[0]);
+    })
+
+    Notification.requestPermission()
+
+    setInterval(function () {
+        //$.each(userSettings.notifications, function (i, e) {
+        //    var water = new Notification(e.text);
+        //})
+
+        //var water = new Notification("Drink some water");
+        //var water = new Notification("Be aware of your posture");
+        //var water = new Notification("Eye stuff");
+    }, 3000)
+
+
+
+    //var myNotification = window.Notifications.createNotification('', 'Item Saved', 'My Application Name');
+    //myNotification.show();
+
+</script>
