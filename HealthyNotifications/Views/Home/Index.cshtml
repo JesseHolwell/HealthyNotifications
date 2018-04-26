@@ -3,109 +3,90 @@
 }
 
 <div class="jumbotron">
-    <h1>Healthy reminders</h1>
-    <p id="quote" class="lead"></p>
+    <h1 id="main-heading">Healthy reminders</h1>
+    <h3 id="quote-heading" class="lead"></h3>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <div class="panel notification-tile">
-            <div class="panel-heading">
-                Notification name
-            </div>
-            <div class="panel-body">
-                <p>
-                    text
-                </p>
-                <p>
-                    icon?
-                </p>
-                <p>
-                    time
-                </p>
-                <p><a class="btn btn-default">Things</a></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel notification-tile">
-            <div class="panel-heading">
-                Notification name
-            </div>
-            <div class="panel-body">
-                <p>
-                    text
-                </p>
-                <p>
-                    icon?
-                </p>
-                <p>
-                    time
-                </p>
-                <p><a class="btn btn-default">Things</a></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel notification-tile">
-            <div class="panel-heading">
-                Notification name
-            </div>
-            <div class="panel-body">
-                <p>
-                    text
-                </p>
-                <p>
-                    icon?
-                </p>
-                <p>
-                    time
-                </p>
-                <p><a class="btn btn-default">Things</a></p>
-            </div>
-        </div>
+
+    @Html.Partial("NotificationTile")
+    @Html.Partial("NotificationTile")
+    @Html.Partial("NotificationTile")
+
+    <div class="col-md-12">
+        <input id="force" type="button" class="btn btn-success" value="Force" />
+        <input id="quote" type="button" class="btn btn-primary" value="Quote" />
+        <input id="kill" type="button" class="btn btn-danger" value="Kill" />
     </div>
 </div>
 <script type="text/javascript">
 
+    //https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API#Closing_notifications
+
+    //TODO: 
+    //customize notification content and timer
+    //add icons
+    //kill notifications
+    //optimize background image
+
     var quotes = [
-        "Health is not valued till sickness comes."
+        "Health is not valued till sickness comes.",
+        "Dwell on the beauty of life. Watch the stars, and see yourself running with them.",
+        "The happiness of your life depends upon the quality of your thoughts.",
+        "If you are distressed by anything external, the pain is not due to the thing itself, but to your estimate of it; and this you have the power to revoke at any moment.",
+        "Jerry is awesome"
     ];
 
-    //var userSettings = new {
-    //    notifications: [
-    //        {
-    //            text: "test",
-    //            icon: "",
-    //            time: 15000
-    //        },
-    //        {
-    //            text: "test2",
-    //            icon: "",
-    //            time: 10000
-    //        }
-    //    ]
-    //};
-
-    $(function () {
-        $("#quote").val(quotes[0]);
-    })
+    var notifications = [
+        {
+            text: "Drink some water",
+            icon: "",
+            time: 150000
+        },
+        {
+            text: "Check your posture",
+            icon: "",
+            time: 100000
+        }
+        //eye stuff
+        //streches
+    ];
 
     Notification.requestPermission()
 
-    setInterval(function () {
-        //$.each(userSettings.notifications, function (i, e) {
-        //    var water = new Notification(e.text);
-        //})
+    function quoteThing() {
+        var max = quotes.length;
+        var min = 0;
 
-        //var water = new Notification("Drink some water");
-        //var water = new Notification("Be aware of your posture");
-        //var water = new Notification("Eye stuff");
-    }, 3000)
+        var random = Math.floor(Math.random() * (max - min)) + min;
+        $("#quote-heading").html(quotes[random]);
+    }
 
+    //randomize
+    $(function () {
 
+        quoteThing();
+        setTimeout(function () {
+            quoteThing()
+        }, 1000000)
 
-    //var myNotification = window.Notifications.createNotification('', 'Item Saved', 'My Application Name');
-    //myNotification.show();
+        setInterval(function () {
+            $.each(notifications, function (i, e) {
+                var water = new Notification(e.text);
+            })
+        }, 100000)
+
+        $("#force").on("click", function (e) {
+            var force = new Notification("force");
+        })
+
+        $("#quote").on("click", function (e) {
+            quoteThing();
+        })
+
+        $("#kill").on("click", function (e) {
+            //kill all notifications
+        })
+    })
 
 </script>
