@@ -3,6 +3,8 @@
     padding-bottom: 20px;
     background-color: aquamarine;
     background-image: url('../Images/133378-relaxing-background-1920x1080-ipad-retina.jpg');
+    /*background-repeat: no-repeat;
+    background-size: 100% 100%;*/
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -26,6 +28,10 @@ textarea {
 }
 
 footer {
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    right: 0;
     color:white;
 }
 
